@@ -43,22 +43,18 @@ jobs:
       - name: Configure Docker
         run: gcloud auth configure-docker us-central1-docker.pkg.dev
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
-
+      # ----------------------------
+      # FIXED: Proper Docker build (NO BUILDX)
+      # ----------------------------
       - name: Build Docker Image
-        working-directory: ${{ github.workspace }}
         run: |
-          echo "Current working directory:"
-          pwd
-          echo "List files:"
-          ls -al
           IMAGE="us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT }}/demo-repo/app:${{ github.sha }}"
           echo "Building image: $IMAGE"
           docker build -t $IMAGE .
 
-
-
+      # ----------------------------
+      # FIXED: Correct Trivy version
+      # ----------------------------
       - name: Trivy Scan
         uses: aquasecurity/trivy-action@0.20.0
         with:
@@ -72,6 +68,9 @@ jobs:
           IMAGE="us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT }}/demo-repo/app:${{ github.sha }}"
           docker push $IMAGE
 
+      # ----------------------------
+      # FIXED: GitOps Repo update (correct path)
+      # ----------------------------
       - name: Update GitOps Repo
         run: |
           git config --global user.email "actions@github.com"
