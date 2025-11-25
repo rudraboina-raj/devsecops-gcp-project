@@ -43,18 +43,12 @@ jobs:
       - name: Configure Docker
         run: gcloud auth configure-docker us-central1-docker.pkg.dev
 
-      # ----------------------------
-      # FIXED: Proper Docker build (NO BUILDX)
-      # ----------------------------
       - name: Build Docker Image
         run: |
           IMAGE="us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT }}/demo-repo/app:${{ github.sha }}"
           echo "Building image: $IMAGE"
-          docker build -t $IMAGE .
+          docker buildx build --load -t $IMAGE .
 
-      # ----------------------------
-      # FIXED: Correct Trivy version
-      # ----------------------------
       - name: Trivy Scan
         uses: aquasecurity/trivy-action@0.20.0
         with:
@@ -63,15 +57,11 @@ jobs:
           severity: HIGH,CRITICAL
           exit-code: 1
 
-      - name: Build Docker Image
+      - name: Push Docker Image
         run: |
           IMAGE="us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT }}/demo-repo/app:${{ github.sha }}"
-          echo "Building image: $IMAGE"
-          docker buildx build --load -t $IMAGE .
+          docker push $IMAGE
 
-      # ----------------------------
-      # FIXED: GitOps Repo update (correct path)
-      # ----------------------------
       - name: Update GitOps Repo
         run: |
           git config --global user.email "actions@github.com"
