@@ -69,4 +69,4 @@ jobs:
           cd repo
           sed -i "s|image: .*|image: us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT }}/demo-repo/app:${{ github.sha }}|g" gitops/deployment.yaml
           git commit -am "Update image to ${{ github.sha }}"
-          git push https://x-access-token:${{ secrets.GITOPS_T_
+          git push https://x-access-token:${{ secrets.GITOPS_TOKEN }}@github.com/${{ secrets.GITOPS_REPO }} HEAD:main
