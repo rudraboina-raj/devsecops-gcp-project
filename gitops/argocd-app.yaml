@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/YOUR_GITOPS_REPO.git
+    repoURL: https://github.com/devsecops-gcp-project.git
     path: gitops
     targetRevision: main
   destination:
