@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: app
-          image: us-central1-docker.pkg.dev/project-8544d2b1-f78e-4448-bfc/demo-repo/app:02fb3d3937fce2bac2bfcee83a66b3af4b739e0a
+          image: us-central1-docker.pkg.dev/project-8544d2b1-f78e-4448-bfc/demo-repo/app:e468d084c2195bb4680b57107d9161607b7659c7
           ports:
             - containerPort: 3000
