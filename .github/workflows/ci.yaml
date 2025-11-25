@@ -43,10 +43,15 @@ jobs:
       - name: Configure Docker
         run: gcloud auth configure-docker us-central1-docker.pkg.dev
 
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
       - name: Build Docker Image
         run: |
           IMAGE="us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT }}/demo-repo/app:${{ github.sha }}"
+          echo "Building image: $IMAGE"
           docker build -t $IMAGE .
+
 
       - name: Trivy Scan
         uses: aquasecurity/trivy-action@0.20.0
