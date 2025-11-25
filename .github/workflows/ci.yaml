@@ -2,7 +2,7 @@ name: CI Pipeline
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
 
 permissions:
@@ -10,7 +10,6 @@ permissions:
   security-events: write
 
 jobs:
-
   sast:
     name: CodeQL SAST
     runs-on: ubuntu-latest
@@ -31,7 +30,6 @@ jobs:
   build_and_push:
     needs: sast
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
 
