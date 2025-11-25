@@ -65,8 +65,9 @@ jobs:
         run: |
           git config --global user.email "actions@github.com"
           git config --global user.name "GitHub Actions"
-          git clone https://github.com/${{ secrets.GITOPS_REPO }} repo
-          cd repo
+          git clone https://github.com/${{ secrets.GITOPS_REPO }} gitops-repo
+          cd gitops-repo
           sed -i "s|image: .*|image: us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT }}/demo-repo/app:${{ github.sha }}|g" gitops/deployment.yaml
           git commit -am "Update image to ${{ github.sha }}"
           git push https://x-access-token:${{ secrets.GITOPS_TOKEN }}@github.com/${{ secrets.GITOPS_REPO }} HEAD:main
+
