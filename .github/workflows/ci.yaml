@@ -49,7 +49,7 @@ jobs:
           docker build -t $IMAGE .
 
       - name: Trivy Scan
-        uses: aquasecurity/trivy-action@v0.20.0
+        uses: aquasecurity/trivy-action@0.20.0
         with:
           image-ref: "us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT }}/demo-repo/app:${{ github.sha }}"
           format: table
