@@ -40,6 +40,8 @@ This project implements a full CI/CD + GitOps + DevSecOps workflow:
   - `GITOPS_REPO`
   - `GITOPS_TOKEN`
 
+Triggering CI pipeline
+
 ---
 
 # 🚀 Done!
