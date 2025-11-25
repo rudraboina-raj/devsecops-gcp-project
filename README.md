@@ -43,12 +43,3 @@ This project implements a full CI/CD + GitOps + DevSecOps workflow:
 ---
 
 # 🚀 Done!
-You now have a **complete production-grade DevSecOps repository**.
-
----
-
-# 👉 Want me to package this as a **downloadable ZIP file**?
-I can generate the **full repo as a file** you can download immediately.
-
-Just say:  
-### **“Generate ZIP file”**
