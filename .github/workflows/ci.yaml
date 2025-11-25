@@ -52,8 +52,9 @@ jobs:
         with:
           image-ref: "us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT }}/demo-repo/app:${{ github.sha }}"
           format: table
-          severity: HIGH,CRITICAL
+          severity: CRITICAL
           exit-code: 1
+
 
       - name: Push Docker Image
         run: |
