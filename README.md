@@ -43,5 +43,4 @@ This project implements a full CI/CD + GitOps + DevSecOps workflow:
 Triggering CI pipeline
 
 ---
-
 # 🚀 Done!
